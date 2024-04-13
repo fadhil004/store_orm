@@ -148,7 +148,7 @@ async function main(){
     await StoreManager.create({
         name: faker.person.firstName(),
         phone: faker.phone.number(),
-        email: faker.internet.email(),
+        email: 'abc.com',
         salary: faker.datatype.number(),
         createdAt: new Date(),
         updatedAt: new Date()

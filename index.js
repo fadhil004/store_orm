@@ -141,10 +141,19 @@ async function main(){
     //     include: [Category]
     // })
 
-    const stores = await Store.findAll({
-        include: [Product, StoreManager, Category]
+    // const stores = await Store.findAll({
+    //     include: [Product, StoreManager, Category]
+    // })
+    // console.log("All Stores:", JSON.stringify(stores,null,2))
+    await StoreManager.create({
+        name: faker.person.firstName(),
+        phone: faker.phone.number(),
+        email: faker.internet.email(),
+        salary: faker.datatype.number(),
+        createdAt: new Date(),
+        updatedAt: new Date()
     })
-    console.log("All Stores:", JSON.stringify(stores,null,2))
+
 }
 
 main().catch(e => console.log(e))

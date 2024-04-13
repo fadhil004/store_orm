@@ -1,4 +1,4 @@
-const {sequelize, StoreManager, Store} = require('./models')
+const {sequelize, StoreManager, Store, Product} = require('./models')
 const {faker} = require('@faker-js/faker')
 const {QueryTypes} = require('sequelize')
 
@@ -84,11 +84,44 @@ async function main(){
     //     include: [StoreManager]
     // })
    
-    const stores = await Store.findAll({
-        include: [StoreManager]
-    });
+    // const stores = await Store.findAll({
+    //     where: {
+    //         id: 1
+    //     },
+    //     include: [StoreManager]
+    // });
     
-    console.log(JSON.parse(JSON.stringify(stores)))
+    // console.log(JSON.parse(JSON.stringify(stores)))
+
+    // await sequelize.sync()
+    // await Product.create({
+    //     name: faker.animal.cat(),
+    //     price: faker.datatype.number(),
+    //     StoreId: 1
+    // })
+
+    // await Product.create({
+    //     name: faker.animal.cat(),
+    //     price: faker.datatype.number(),
+    //     StoreId: 1
+    // })
+    
+    // await Product.create({
+    //     name: faker.animal.bear(),
+    //     price: faker.datatype.number(),
+    //     StoreId: 2
+    // })
+
+    // await Product.create({
+    //     name: faker.animal.bear(),
+    //     price: faker.datatype.number(),
+    //     StoreId: 2
+    // })
+
+    const stores = await Store.findAll({
+        include: [Product, StoreManager]
+    })
+    console.log("All Stores:", JSON.stringify(stores,null,2))
 }
 
 main().catch(err => console.log(err))
